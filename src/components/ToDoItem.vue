@@ -1,7 +1,7 @@
 <template>
   <div class="row">
         <div class="col-md-2">
-            <input type="checkbox" v-model="todo.completed">
+            <input type="checkbox" v-model="todo.completed" v-on:change="$emit('emit-todo-checkbox',todo)">
         </div>
         <div class="col-md-8" v-bind:class="{'is-completed':todo.completed}">
             <p>{{todo.title}}</p>

@@ -5,14 +5,16 @@
           <ToDoAdd v-on:emit-todo-add="itemAdd"/>
       </div>
       <div class="todo-items">
-        <ToDoItem v-bind:todo="todo" v-on:emit-todo="itemDelete" v-bind:key="todo.id" v-for="todo of todos" />
+        <ToDoItem v-bind:todo="todo" v-on:emit-todo="itemDelete" v-on:emit-todo-checkbox="itemPost" v-bind:key="todo.id" v-for="todo of todos" />
       </div>
+      {{ info }}
   </div>
 </template>
 
 <script>
 import ToDoItem from './ToDoItem';
 import ToDoAdd from './ToDoAdd';
+import axios from 'axios';
 
 export default {
     "name":'ToDoItems',
@@ -22,17 +24,33 @@ export default {
     },
     "methods":{
         itemDelete(id){
-            this.todos = this.todos.filter(x=>x.id!=id);
+            axios
+            .delete('https://jsonplaceholder.typicode.com/todos/'+id)
+            .then(response => {
+                console.log(response);
+                this.todos = this.todos.filter(x=>x.id!=id);
+            }).catch(err=>console.log(err));
         },
         itemAdd(new_item_name){
             let new_todo = {};
-            new_todo.id = this.todos.length+1;
+            // new_todo.id = this.todos.length+1;
             new_todo.title = new_item_name;
             new_todo.completed = false;
-            this.todos = [...this.todos, new_todo];
+
+            axios
+            .post('https://jsonplaceholder.typicode.com/todos',new_todo)
+            .then(response => {
+                console.log(response);
+                this.todos = [...this.todos, new_todo];
+            }).catch(err=>console.log(err));
         },
-        markComplete(todo){
+        itemPost(todo){
             todo.completed != todo.completed;
+            axios
+            .post('https://jsonplaceholder.typicode.com/todos/'+todo.id,todo)
+            .then(response => {
+                console.log(response);
+            }).catch(err=>console.log(err));
         }
     },
     data(){
@@ -53,9 +71,15 @@ export default {
                     "title":"item 3",
                     "completed":true
                 }
-            ]
+            ],
+            info: null
         }
-    }
+    },
+    mounted () {
+        axios
+        .get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+        .then(response => (this.todos = response.data));
+  }
 }
 </script>
 

@@ -1,17 +1,40 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <Header />
     <router-view />
+  </div> -->
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <SideHeader></SideHeader>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <router-view />
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+    
   </div>
+  <!-- End of Page Wrapper -->
 </template>
 
 <script>
-import Header from "./components/layouts/Header";
+// import Header from "./components/layouts/Header";
+import SideHeader from "./components/header/SideHeader";
 
 export default {
     name:'app',
     components:{
-      Header
+      // Header,
+      SideHeader
     }
 };
 </script>
