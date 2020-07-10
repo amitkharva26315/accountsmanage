@@ -1,4 +1,8 @@
 <template>
+  <!-- <div id="app">
+    <Header />
+    <router-view />
+  </div> -->
   <!-- Page Wrapper -->
   <div id="wrapper">
     <SideHeader></SideHeader>

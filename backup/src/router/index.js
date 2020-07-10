@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 // import ToDoItems from '../components/ToDoItems.vue'
-import Dashboard from '../components/pages/dashboard/dashboard.vue'
+import Dashboard from '../components/pages/dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -26,7 +26,7 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/party_master/party_master.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../components/pages/party_master.vue')
   },
   {
     path: '/items_services',
@@ -34,7 +34,7 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/items_services/items_services.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../components/pages/items_services.vue')
   },
   {
     path: '/invoice',
@@ -42,7 +42,7 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/invoice/invoice.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../components/pages/invoice.vue')
   }
 ]
 
